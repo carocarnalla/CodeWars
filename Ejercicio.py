@@ -146,10 +146,44 @@ print(grow[1,2,3]) '''
 # invert([]) == []
 # You can assume that all values are integers. Do not mutate the input array/list.
 
-
+#Este va modificando la lista inicial
+'''
 def invert(lst):
     for i in range(0,len(lst)):
-        lst[i]==(-1)*i
+        lst[i]==(-1)*(lst[i])
     return lst
 
-print(invert[1,2,3])
+print(invert[1,2,3])'''
+
+#Este no cambia la lista inicial
+#Se van guardando los nuevos valores en una nueva lista
+'''def invert(lst):
+    res=[]
+    for i in range(len(lst)):
+        res.append((-1)*(lst[i]))
+    return res'''
+
+#La solución óptima
+'''def invert(lst):
+    return [-x for x in lst]'''
+
+
+#Convert number to reversed array of digits
+#Given a random non-negative number, you have to return the digits of this number within an array in reverse order.
+
+#Example(Input => Output):
+#35231 => [1,3,2,5,3]
+#0 => [0]
+
+def digitize(n):
+    lis=[]
+    if n==0:
+        lis.append(n)
+        return lis
+    else:
+        while n > 0:
+            lis.append(n % 10)
+            n==n/10
+        return lis
+
+print(digitize(10))
