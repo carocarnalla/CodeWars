@@ -175,7 +175,7 @@ print(invert[1,2,3])'''
 #35231 => [1,3,2,5,3]
 #0 => [0]
 
-def digitize(n):
+'''def digitize(n):
     lis=[]
     if n==0:
         lis.append(n)
@@ -183,7 +183,137 @@ def digitize(n):
     else:
         while n > 0:
             lis.append(n % 10)
-            n==n/10
-        return lis
+            n=n//10
+        return lis'''
 
-print(digitize(10))
+#solución óptima
+
+'''def digitize(n):
+    return map(int, str(n)[::-1])'''
+
+
+#Ejercicio
+#Sum of positive
+#You get an array of numbers, return the sum of all of the positives ones.
+#Example [1,-4,7,12] => 1 + 7 + 12 = 20
+#Note: if there is nothing to sum, the sum is default to 0.
+
+'''def positive_sum(arr):
+    a=0
+    for i in range(0,len(arr)):
+        if arr[i]>0:
+            a=a+arr[i]
+    return a
+
+#Mejor:
+def positive_sum(arr):
+    a=0
+    for i in arr:
+        if i>0:
+            a=a+i
+    return a'''
+
+
+#L1: Set alarm
+#Write a function named setAlarm which receives two parameters. 
+#The first parameter, employed, is true whenever you are employed and the second parameter, vacation is true whenever you are on vacation.
+
+#The function should return true if you are employed and not on vacation (because these are the circumstances under which you need to set an alarm). 
+#It should return false otherwise. Examples:
+
+# setAlarm(true, true) -> false
+# setAlarm(false, true) -> false
+# setAlarm(false, false) -> false
+# setAlarm(true, false) -> true
+
+'''def set_alarm(employed, vacation):
+    if employed==True and vacation ==False:
+        return True
+    else:
+        return False
+
+#Óptima
+def set_alarm(employed, vacation):
+    return employed and not vacation'''
+
+
+#Will you make it?
+# You were camping with your friends far away from home, but when it's time to go back, you realize that your fuel is running out and the nearest pump is 50 miles away! 
+# You know that on average, your car runs on about 25 miles per gallon. There are 2 gallons left.
+
+# Considering these factors, write a function that tells you if it is possible to get to the pump or not.
+
+# Function should return true if it is possible and false if not.
+
+'''def zero_fuel(distance_to_pump, mpg, fuel_left):
+    if distance_to_pump <= mpg*fuel_left:
+        return True
+    else:
+        return False'''
+
+#Óptima
+'''def zeroFuel(distance_to_pump, mpg, fuel_left):
+    return distance_to_pump <= mpg * fuel_left
+
+
+print(zeroFuel(50,25,1))'''
+
+#If you can't sleep, just count sheep!!
+# Given a non-negative integer, 3 for example, return a string with a murmur: "1 sheep...2 sheep...3 sheep...". 
+# Input will always be valid, i.e. no negative integers.
+
+
+'''def count_sheep(n):
+    a=''
+    if n==0:
+        print(a)
+    else:
+        for i in range(1,n+1):
+            a=a+('{} sheep...'.format(i))
+        print(a)'''
+
+'''count_sheep(5)'''
+
+
+'''def count_sheep(n):
+    return ''.join(f"{i} sheep..." for i in range(1,n+1))'''
+
+
+# Descending Order
+# DESCRIPTION:
+# Your task is to make a function that can take any non-negative integer as an argument and return it with its digits in descending order. 
+# Essentially, rearrange the digits to create the highest possible number.
+
+# Examples:
+# Input: 42145 Output: 54421
+
+# Input: 145263 Output: 654321
+
+# Input: 123456789 Output: 987654321
+
+'''def descending_order(num):
+    a=str(num)
+    b=sorted(a, reverse=True)
+    c=''.join(b)
+    d=int(c)
+    return d'''
+
+#Óptima
+'''def Descending_Order(num):
+    return int("".join(sorted(str(num), reverse=True)))'''
+
+# Binary Addition
+# Implement a function that adds two numbers together and returns their sum in binary. 
+# The conversion can be done before, or after the addition.
+
+# The binary number returned should be a string.
+
+# Examples:(Input1, Input2 --> Output (explanation)))
+
+# 1, 1 --> "10" (1 + 1 = 2 in decimal or 10 in binary)
+# 5, 9 --> "1110" (5 + 9 = 14 in decimal or 1110 in binary)
+
+def add_binary(a,b):
+    print(a+b)
+
+add_binary(1,1)
