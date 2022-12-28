@@ -325,3 +325,361 @@ print(zeroFuel(50,25,1))'''
     return bin(a+b)[2:]'''
 
 # Aquí usaron bin, pero le están indicando que sólo imprima a partir del i=2, o sea, del tercer lugar.
+
+
+
+
+# Returning Strings
+# Make a function that will return a greeting statement that uses an input; 
+# your program should return, "Hello, <name> how are you doing today?".
+
+# [Make sure you type the exact thing I wrote or the program may not execute properly]
+
+# def greet(name):
+#     return (f"Hello, {name} how are you doing today?")
+
+# print(greet('Caro'))
+
+
+
+
+
+# Remove String Spaces
+# Simple, remove the spaces from the string, then return the resultant string.
+
+# def no_space(x):
+#     return (x.replace(' ', ''))
+
+
+
+
+# List Filtering
+# In this kata you will create a function that takes a list of non-negative integers and strings and returns a new list with the strings filtered out.
+
+# Example
+# filter_list([1,2,'a','b']) == [1,2]
+# filter_list([1,'a','b',0,15]) == [1,0,15]
+# filter_list([1,2,'aasf','1','123',123]) == [1,2,123]
+
+
+
+# def filter_list(l):
+#     new_list=[i for i in l if isinstance(i, int)]
+#     return new_list
+
+# def filter_list(l):
+#   'return a new list with the strings filtered out'
+#   return [x for x in l if type(x) is not str]
+
+# Esta está más tranquila porque directamente revisa el tipo de dato de x
+# e indica que si no es str, que lo puede guardar
+
+
+
+
+# Convert a Boolean to a String
+# Implement a function which convert the given boolean value into its string representation.
+
+# Note: Only valid inputs will be given.
+
+# def boolean_to_string(b):
+#     return 'True' if b==True else 'False'
+
+# Aunque no hay necesidad de poner el '==True' porque, por si solo le dices que 'if b'
+# o sea, que si es True, haga eso
+
+
+# La óptima
+# def boolean_to_string(b):
+#     return str(b)
+
+
+
+#Sum of two lowest positive integers
+# Create a function that returns the sum of the two lowest positive numbers given an array of minimum 4 positive integers. 
+# No floats or non-positive integers will be passed.
+
+# For example, when an array is passed like [19, 5, 42, 2, 77], the output should be 7.
+
+# [10, 343445353, 3453445, 3453545353453] should return 3453455.
+
+# def sum_two_smallest_numbers(numbers):
+#     b=sorted(numbers)
+#     return b[0]+b[1]
+
+# La óptima
+# def sum_two_smallest_numbers(numbers):
+#     return sum(sorted(numbers)[:2])
+
+
+
+
+# How good are you really?
+# There was a test in your class and you passed it. Congratulations!
+# But you're an ambitious person. 
+# You want to know if you're better than the average student in your class.
+
+# You receive an array with your peers' test scores. 
+# Now calculate the average and compare your score!
+
+# Return True if you're better, else False!
+
+# Note:
+# Your points are not included in the array of your class's points. 
+# For calculating the average point you may add your point to the given array!
+
+# def better_than_average(class_points, your_points):
+#     if (sum(class_points)/len(class_points))<your_points:
+#         return True
+#     else:
+#         return False
+
+# la óptima
+
+# def better_than_average(class_points, your_points):
+#     return your_points > sum(class_points) / len(class_points)
+
+
+
+
+# Is this a triangle?
+
+# Implement a function that accepts 3 integer values a, b, c. 
+# The function should return true if a triangle can be built with the sides of given length and false in any other case.
+
+# (In this case, all triangles must have surface greater than 0 to be accepted).
+
+# def is_triangle(a, b, c):
+#     if a+b>c and b+c>a and c+a>b:
+#         return True
+#     else:
+#         return False
+
+
+# La óptima
+# def is_triangle(a, b, c):
+#     return (a<b+c) and (b<a+c) and (c<a+b)
+
+
+
+# Convert boolean values to strings 'Yes' or 'No'
+# Complete the method that takes a boolean value and return a "Yes" string for true, or a "No" string for false.
+
+# def bool_to_word(boolean):
+#     return 'Yes' if boolean else 'No'
+
+# Es igual a la óptima
+
+
+
+# You can't code under pressure #1
+# Code as fast as you can! you need to double the integer and return it
+
+# def double_integer(i):
+#     return 2*i
+
+
+
+# Count by X
+# Create a function with two arguments that 
+# will return an array of the first n multiples of x.
+
+# Assume both the given number and the number of times 
+# to count will be positive numbers greater than 0.
+
+# Return the results as an array or list ( depending on language ).
+
+# Examples
+# count_by(1,10) #should return [1,2,3,4,5,6,7,8,9,10]
+# count_by(2,5) #should return [2,4,6,8,10]
+
+# La primera que escribiste
+# def count_by(x, n):
+#     a=[]
+#     for i in  range(1,n+1):
+#         a.append(x*i)
+#     return a
+
+# Es la segunda óptima, pero la hiciste tú
+# def count_by(x, n):
+#      return [x*i for i in range(1,n+1)]
+
+
+
+
+# Keep Hydrated!
+# Nathan loves cycling.
+
+# Because Nathan knows it is important to stay hydrated, he drinks 
+# 0.5 litres of water per hour of cycling.
+
+# You get given the time in hours and you need to return 
+# the number of litres Nathan will drink, rounded to the smallest value.
+
+# time = 3 ----> litres = 1
+
+# time = 6.7---> litres = 3
+
+# time = 11.8--> litres = 5
+
+# def litres(time):
+#     return int(time*0.5)
+    # o mejor
+   #return time//2
+
+
+
+
+
+# RGB to Hex Conversion
+# The rgb function is incomplete. 
+# Complete it so that passing in RGB decimal values will result 
+# in a hexadecimal representation being returned. 
+# Valid decimal values for RGB are 0 - 255. 
+# Any values that fall out of that range must be rounded to the closest valid value.
+
+# Note: Your answer should always be 6 characters long, the shorthand 
+# with 3 will not work here.
+
+# The following are examples of expected output values:
+
+# rgb(255, 255, 255) # returns FFFFFF
+# rgb(255, 255, 300) # returns FFFFFF
+# rgb(0,0,0) # returns 000000
+# rgb(148, 0, 211) # returns 9400D3
+
+
+# def rgb(r, g, b):
+#     ro=format(r,'X')
+#     gr=format(g,'X')
+#     bl=format(b,'X')
+#     print(f"{ro:02}",f"{gr:02}",f"{bl:02}",sep='')
+
+# rgb(1,0,0)
+
+#********************************************************************
+# def rgb(r, g, b):
+#     if 0<=r<=255:
+#         ro=format(r,'X')
+#     elif r<0:
+#         ro=format(0,'X')
+#     else:
+#         ro=format(255,'X')
+    
+#     if 0<=g<=255:
+#         gr=format(g,'X')
+#     elif g<0:
+#         gr=format(0,'X')
+#     else:
+#         gr=format(255,'X')
+
+#     if 0<=b<=255:
+#         bl=format(b,'X')
+#     elif b<0:
+#         bl=format(0,'X')
+#     else:
+#         bl=format(255,'X')
+    
+#     a=(f"{ro:02}"+f"{gr:02}"+f"{bl:02}")
+#     print(a)
+
+# rgb(216,14,15)
+#*********************************************************************
+
+# # r=1
+# # ro=format(r,'X')
+# # print(ro)
+# # a=f"{ro:02}"
+# # print(a)
+
+# r=1
+# ro=format(r,'X')
+# gr=1
+# bl=1
+# a=(f"{ro:02}"+f"{gr:02}"+f"{bl:02}")
+# print(a)
+# print(ro)
+
+
+# r=15
+# ro=format(r,'X')
+# print(ro)
+
+# Solución mía
+
+# def rgb(r, g, b):
+#     if 16<=r<=255:
+#         ro=format(r,'X')
+#     elif 0<=r<=15:
+#         ro='0'+str(format(r,'X'))
+#     elif r<0:
+#         ro=format(0,'X')
+#     else:
+#         ro=format(255,'X')
+    
+#     if 16<=g<=255:
+#         gr=format(g,'X')
+#     elif 0<=g<=15:
+#         gr='0'+str(format(g,'X'))
+#     elif g<0:
+#         gr=format(0,'X')
+#     else:
+#         gr=format(255,'X')
+
+#     if 16<=b<=255:
+#         bl=format(b,'X')
+#     elif 0<=b<=5:
+#         bl='0'+str(format(b,'X'))
+#     elif b<0:
+#         bl=format(0,'X')
+#     else:
+#         bl=format(255,'X')
+    
+#     a=(f"{ro:02}"+f"{gr:02}"+f"{bl:02}")
+#     return a
+
+
+
+# def rgb(r, g, b):
+#     round = lambda x: min(255, max(x, 0))
+#     return ("{:02X}" * 3).format(round(r), round(g), round(b))
+
+
+# En esta parte min(255, max(x, 0))
+# evalúa primero el máximo entre 0 y el número dado, de ahí
+# toma el mínimo entre el 255 y el número que salió de la evaluación anterior
+
+# return ("{:02X}" * 3).format(round(r), round(g), round(b))
+# En esta parte, el formato de dos dígitos se pone dos veces 
+# y con format, acomodamos las tres funciones que estamos llamando
+# y cada función, toma su respectiva variable en la x 
+
+# Otra
+
+# def limit(num):
+#     if num < 0:
+#         return 0
+#     if num > 255:
+#         return 255
+#     return num
+
+
+# def rgb(r, g, b):
+#     return "{:02X}{:02X}{:02X}".format(limit(r), limit(g), limit(b))
+
+
+
+
+# Bit Counting
+# Write a function that takes an integer as input, and returns the number 
+# of bits that are equal to one in the binary representation of that number. 
+# You can guarantee that input is non-negative.
+
+# Example: 
+# The binary representation of 1234 is 10011010010, so 
+# the function should return 5 in this case
+
+def count_bits(n):
+    a=bin(n,[2:])
+
+count_bits(1)
