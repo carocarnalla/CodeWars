@@ -79,15 +79,20 @@
 
 # with open('texto.txt') as file:
 #     a=file.readlines()
-#     l=[[0 for i in range(0,len(a[i]))] for i in range(0,len(a))]
+#     l=[]
+#     for letra in a:
+#         l.append(letra)
+        
+#     #l=[[0 for i in range(0,len(a[i]))] for i in range(0,len(a))]
 #     #for i in a:
-#     for i in range(0,len(a)):
-#          for j in range(0,len(a[i])):
-#             l=[[a[j] for j in range(0,len(a[i]))] for i in range(0,len(a))]
+#     # for i in range(0,len(a)):
+#     #       for j in range(0,len(a[i])):
+#     #          l=[[a[j] for j in range(0,len(a[i]))] for i in range(0,len(a))]
 #         #print(len(a[i]))
 #         #l.append(a[i])
+#     #l=[*a(i)]
 #     print(l)
-# lista_res = []
+
 # lista_res.append('#', '#', '#', '#','#', 'E','#', '#','#', '#''#', '#'])
 # [
 # ['#', ' ', ' ', '#',' ', 'E¿#','#', '#','#', ' ', ' ', '#']
@@ -96,16 +101,19 @@
 # w, h = 8, 5
 # Matrix = [[0 for x in range(w)] for y in range(h)] 
 
+# a='abcdefg'
+# l=[*a]
+
+# print(l)
 
 
 
-
-with open('texto.txt') as file:
-    a=file.readlines()
-    l=[]
-    for i in range(0,len(a)):
-        l.append(a[i])
-    print(l)
+# with open('texto.txt') as file:
+#     a=file.readlines()
+#     l=[]
+#     for i in range(0,len(a)):
+#         l.append(a[i])
+#     print(l)
 
 
 
@@ -148,3 +156,451 @@ with open('texto.txt') as file:
 #     return t
 
 # print(datos('abc'))
+
+
+# with open('texto.txt') as file:
+#     a=file.readlines()
+#     b=file.readlines()
+#     while (file.readlines()):
+#         print('*')
+    # l=[]
+    # for i in a:
+    #     l.append()
+    # print(l)
+    # print(a)
+    # print(b)
+
+#************************************************************************************************************
+myfile = open("texto.txt", "r")
+myline = myfile.readline()
+l=[]
+while myline:
+    l.append(list(myline))
+    myline = myfile.readline()
+myfile.close() 
+#************************************************************************************************************
+# print(l)
+# a=l.index('E')
+# print(a)
+# print(l)
+# print(len(l[0]))
+
+#************************************************************************************************************
+for i in range(0,len(l)):
+    for j in range(0,len(l[i])):
+        if l[i][j]=='#':
+            continue
+        elif l[i][j]=='E':
+            Ei=i
+            Ej=j
+            #print(Ei,Ej)
+        else:
+            continue
+pia=Ei
+pja=Ej
+
+pi=Ei+1
+pj=Ej
+
+xi=0
+xj=0
+yi=0
+yj=0
+#************************************************************************************************************
+    
+
+# for i in range(0,len(l)):
+#     for j in range(0,len(l[i])):
+#         if l[i][j]=='#':
+#             continue
+#         elif l[i][j]=='E':
+#             Ei=i
+#             Ej=j
+#             #print(Ei,Ej)
+#         else:
+#             continue
+# pi=Ei+1
+# pj=j
+# print('Las coordenadas de inicio son {},{}'.format(Ei,Ej))
+# # Abajo
+# # if l[Ei+1][Ej]==' ':
+# #     nueva=Ei+1
+# # elif l[Ei+1][Ej]=='#':
+# #     print('No')
+
+# a=1
+# b=0
+# def recu(a, b):
+#     print(a)
+#     if(a==1):
+#         recu(2,3)
+#         return 0
+#     if(a==2):
+#         recu(3,3)
+#         return 0
+#     return 0
+
+#     #recu(1,2)
+
+# recu(a,b)
+
+
+
+
+
+
+
+# print(l[pi][pj])
+#****************************************Sí funciona*********************************************************************************
+# Este es cuando hay un solo camino
+
+# def lab(pi, pj):
+#     print(pi,pj)
+#     if l[pi][pj-1]=='#' and l[pi][pj+1]=='#' and (l[pi+1][pj]!='#'):
+#         print('abajo')
+#         l[pi][pj]='#'
+#         lab(pi+1,pj)
+#         return 0
+#     if l[pi][pj-1]=='#' and ((l[pi][pj+1]!='#')) and l[pi+1][pj]=='#':
+#         print('der')
+#         l[pi][pj]='#'
+#         lab(pi,pj+1)
+#         return 0
+#     if ((l[pi][pj-1]!='#')) and (l[pi][pj+1]=='#') and l[pi+1][pj]=='#':
+#         print('izq')
+#         l[pi][pj]='#'
+#         lab(pi,pj-1)
+#         return 0
+#     if l[pi][pj]=='@':
+#         print('listo')
+#     return 0
+
+#     #recu(1,2)
+
+# lab(pi,pj)
+#*************************************************************************************************************************************
+
+
+
+# l[pi][pj]
+# arriba = l[pi-1][pj]
+
+# abajo = l[pi+1][pj]
+
+# izq = l[pi][pj-1]
+
+# der = l[pi][pj+1]
+
+
+
+# def lab(pi, pj):
+#     arriba = l[pi-1][pj]
+#     abajo = l[pi+1][pj]
+#     izq = l[pi][pj-1]
+#     der = l[pi][pj+1]
+#     print(pi,pj)
+#     if izq=='#' and der=='#' and (abajo!='#'):
+#         print('abajo')
+#         l[pi][pj]='#'
+#         lab(pi+1,pj)
+#         return 0
+#     if izq=='#' and ((der!='#')) and abajo=='#':
+#         print('der')
+#         l[pi][pj]='#'
+#         lab(pi,pj+1)
+#         return 0
+#     if ((izq!='#')) and (der=='#') and abajo=='#':
+#         print('izq')
+#         l[pi][pj]='#'
+#         lab(pi,pj-1)
+#         return 0
+#     if l[pi][pj]=='@':
+#         print('listo')
+#     return 0
+
+# lab(pi,pj)
+
+###
+
+
+#*************************************************************************************************************************************
+#Con dos pares de variables
+
+
+
+# def lab(pi, pj, pia, pja):
+#     arriba = l[pi-1][pj]
+#     abajo = l[pi+1][pj]
+#     izq = l[pi][pj-1]
+#     der = l[pi][pj+1]
+#     print(pia,pja)
+#     print(pi,pj)
+    
+#     if pi>pia and pj==pja:
+#         if izq=='#' and der=='#' and (abajo!='#'):
+#             print('abajo')
+#             pia=pi
+#             pja=pj
+#             lab(pi+1,pj,pia,pja)
+#             return 0
+#         if izq=='#' and ((der!='#')) and abajo=='#':
+#             print('der')
+#             pia=pi
+#             pja=pj
+#             lab(pi,pj+1,pia,pja)
+#             return 0
+#         if ((izq!='#')) and (der=='#') and abajo=='#':
+#             print('izq')
+#             pia=pi
+#             pja=pj
+#             lab(pi,pj-1,pia,pja)
+#             return 0
+#         if l[pi][pj]=='@':
+#             print('listo')
+
+#     if pi<pia and pj==pja:
+#         if izq=='#' and der=='#' and (arriba!='#'):
+#             print('arriba')
+#             pia=pi
+#             pja=pj
+#             lab(pi-1,pj,pia,pja)
+#             return 0
+#         if izq=='#' and ((der!='#')) and arriba=='#':
+#             print('der')
+#             pia=pi
+#             pja=pj
+#             lab(pi,pj+1,pia,pja)
+#             return 0
+#         if ((izq!='#')) and (der=='#') and arriba=='#':
+#             print('izq')
+#             pia=pi
+#             pja=pj
+#             lab(pi,pj-1,pia,pja)
+#             return 0
+#         if l[pi][pj]=='@':
+#             print('listo')
+
+#     if pi==pia and pj>pja:
+#         if der=='#' and abajo=='#' and (arriba!='#'):
+#             print('arriba')
+#             pia=pi
+#             pja=pj
+#             lab(pi-1,pj,pia,pja)
+#             return 0
+#         if der=='#' and ((abajo!='#')) and arriba=='#':
+#             print('abajo')
+#             pia=pi
+#             pja=pj
+#             lab(pi+1,pj,pia,pja)
+#             return 0
+#         if ((der!='#')) and (abajo=='#') and arriba=='#':
+#             print('der')
+#             pia=pi
+#             pja=pj
+#             lab(pi,pj+1,pia,pja)
+#             return 0
+#         if l[pi][pj]=='@':
+#             print('listo')
+    
+#     if pi==pia and pj<pja:
+#         if izq=='#' and abajo=='#' and (arriba!='#'):
+#             print('arriba')
+#             pia=pi
+#             pja=pj
+#             lab(pi-1,pj,pia,pja)
+#             return 0
+#         if izq=='#' and ((abajo!='#')) and arriba=='#':
+#             print('abajo')
+#             pia=pi
+#             pja=pj
+#             lab(pi+1,pj,pia,pja)
+#             return 0
+#         if ((izq!='#')) and (abajo=='#') and arriba=='#':
+#             print('izq')
+#             pia=pi
+#             pja=pj
+#             lab(pi,pj-1,pia,pja)
+#             return 0
+#         if l[pi][pj]=='@':
+#             print('listo')
+#     return 0
+
+# lab (pi,pj,pia,pja)
+
+#*************************************************************************************************************************************
+
+
+
+
+
+
+    # if izq=='#' and der=='#' and (abajo!='#'):
+    #     print('abajo')
+    #     l[pi][pj]='#'
+    #     lab(pi+1,pj)
+    #     return 0
+    # if izq=='#' and ((der!='#')) and abajo=='#':
+    #     print('der')
+    #     l[pi][pj]='#'
+    #     lab(pi,pj+1)
+    #     return 0
+    # if ((izq!='#')) and (der=='#') and abajo=='#':
+    #     print('izq')
+    #     l[pi][pj]='#'
+    #     lab(pi,pj-1)
+    #     return 0
+    # if l[pi][pj]=='@':
+    #     print('listo')
+    # return 0
+
+    
+
+
+
+
+def lab(pi, pj, pia, pja,xi,xj,yi,yj):
+    arriba = l[pi-1][pj]
+    abajo = l[pi+1][pj]
+    izq = l[pi][pj-1]
+    der = l[pi][pj+1]
+    print(pia,pja)
+    print(pi,pj)
+    
+    if pi>pia and pj==pja:
+        if izq=='#' and der=='#' and (abajo!='#'):
+            print('abajo')
+            pia=pi
+            pja=pj
+            lab(pi+1,pj,pia,pja,xi,xj,yi,yj)
+            return 0
+        if izq=='#' and ((der!='#')) and abajo=='#':
+            print('der')
+            pia=pi
+            pja=pj
+            lab(pi,pj+1,pia,pja,xi,xj,yi,yj)
+            return 0
+        if ((izq!='#')) and (der=='#') and abajo=='#':
+            print('izq')
+            pia=pi
+            pja=pj
+            lab(pi,pj-1,pia,pja,xi,xj,yi,yj)
+            return 0
+        if ((izq!='#')) and (der!='#') and abajo=='#':
+            print('Bifurcación')
+            print('Vamos a la derecha')
+            xi=pi
+            xj=pj
+            yi=pi-1
+            yj=pj
+            pia=pi
+            pja=pj
+            l[pi][pj+1]='#'
+            lab(pi,pj+1,pia,pja,xi,xj,yi,yj)
+            return 0
+        if l[pi][pj]=='@':
+            print('listo')
+            return 0
+        if ((izq=='#')) and (der=='#') and abajo=='#':
+            print('Cerrado')
+            print('Regresamos')
+            pia=yi
+            pja=yj
+            pi=xi
+            pj=xj
+            lab(pi,pj,pia,pja,xi,xj,yi,yj)
+        
+    if pi<pia and pj==pja:
+        if izq=='#' and der=='#' and (arriba!='#'):
+            print('arriba')
+            pia=pi
+            pja=pj
+            lab(pi-1,pj,pia,pja,xi,xj,yi,yj)
+            return 0
+        if izq=='#' and ((der!='#')) and arriba=='#':
+            print('der')
+            pia=pi
+            pja=pj
+            lab(pi,pj+1,pia,pja,xi,xj,yi,yj)
+            return 0
+        if ((izq!='#')) and (der=='#') and arriba=='#':
+            print('izq')
+            pia=pi
+            pja=pj
+            lab(pi,pj-1,pia,pja,xi,xj,yi,yj)
+            return 0
+        if ((izq=='#')) and (der=='#') and arriba=='#':
+            print('Cerrado')
+            print('Regresamos')
+            pia=yi
+            pja=yj
+            pi=xi
+            pj=xj
+            lab(pi,pj,pia,pja,xi,xj,yi,yj)
+            return 0
+        if l[pi][pj]=='@':
+            print('listo')
+
+    if pi==pia and pj>pja:
+        if der=='#' and abajo=='#' and (arriba!='#'):
+            print('arriba')
+            pia=pi
+            pja=pj
+            lab(pi-1,pj,pia,pja,xi,xj,yi,yj)
+            return 0
+        if der=='#' and ((abajo!='#')) and arriba=='#':
+            print('abajo')
+            pia=pi
+            pja=pj
+            lab(pi+1,pj,pia,pja,xi,xj,yi,yj)
+            return 0
+        if ((der!='#')) and (abajo=='#') and arriba=='#':
+            print('der')
+            pia=pi
+            pja=pj
+            lab(pi,pj+1,pia,pja,xi,xj,yi,yj)
+            return 0
+        if ((der=='#')) and (abajo=='#') and arriba=='#':
+            print('Cerrado')
+            print('Regresamos')
+            pia=yi
+            pja=yj
+            pi=xi
+            pj=xj
+            lab(pi,pj,pia,pja,xi,xj,yi,yj)
+            return 0
+        if l[pi][pj]=='@':
+            print('listo')
+    
+    if pi==pia and pj<pja:
+        if izq=='#' and abajo=='#' and (arriba!='#'):
+            print('arriba')
+            pia=pi
+            pja=pj
+            lab(pi-1,pj,pia,pja,xi,xj,yi,yj)
+            return 0
+        if izq=='#' and ((abajo!='#')) and arriba=='#':
+            print('abajo')
+            pia=pi
+            pja=pj
+            lab(pi+1,pj,pia,pja,xi,xj,yi,yj)
+            return 0
+        if ((izq!='#')) and (abajo=='#') and arriba=='#':
+            print('izq')
+            pia=pi
+            pja=pj
+            lab(pi,pj-1,pia,pja,xi,xj,yi,yj)
+            return 0
+        if l[pi][pj]=='@':
+            print('listo')
+            return 0
+        if ((izq=='#')) and (abajo=='#') and arriba=='#':
+            print('Cerrado')
+            print('Regresamos')
+            pia=yi
+            pja=yj
+            pi=xi
+            pj=xj
+            lab(pi,pj,pia,pja,xi,xj,yi,yj)
+    return 0
+
+lab (pi,pj,pia,pja,xi,xj,yi,yj)
