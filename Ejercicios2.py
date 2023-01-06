@@ -670,6 +670,9 @@ def lab(pi, pj, pia, pja,xi,xj,yi,yj):
             return 0
         
     if pi<pia and pj==pja:
+        if l[pi][pj]=='@':
+            print('arriba - listo')
+            return 0
         if izq=='#' and der=='#' and (arriba!='#'):
             print('arriba - arriba')
             pia=pi
@@ -709,8 +712,6 @@ def lab(pi, pj, pia, pja,xi,xj,yi,yj):
             pj=xj
             lab(pi,pj,pia,pja,xi,xj,yi,yj)
             return 0
-        if l[pi][pj]=='@':
-            print('arriba - listo')
 
     if pi==pia and pj>pja:
         if der=='#' and abajo=='#' and (arriba!='#'):
@@ -734,6 +735,21 @@ def lab(pi, pj, pia, pja,xi,xj,yi,yj):
         if l[pi][pj]=='@':
             print('derecha - listo')
             return 0
+
+        if der=='#' and ((abajo!='#')) and (arriba!='#'):
+            print('arriba - Bifurcación')
+            print('arriba - Vamos hacia abajo')
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj-1
+            pia=pi
+            pja=pj
+            l[pi+1][pj]='#'
+            lab(pi+1,pj,pia,pja,xi,xj,yi,yj)
+            return 0
+
+
         if ((der=='#')) and (abajo=='#') and arriba=='#':
             print('derecha - Cerrado')
             print('derecha - Regresamos')
@@ -742,6 +758,7 @@ def lab(pi, pj, pia, pja,xi,xj,yi,yj):
             pi=xi
             pj=xj
             lab(pi,pj,pia,pja,xi,xj,yi,yj)
+            return 0
         
     
     if pi==pia and pj<pja:
