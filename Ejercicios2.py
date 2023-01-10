@@ -2309,6 +2309,7 @@ def lab(pi, pj, pia, pja,xi,xj,yi,yj,di,dj):
             dj=pj
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,di,dj)
             return 0
+        
 
         if ((izq=='#')) and (der=='#') and abajo=='#':
             print('abajo - Cerrado')
