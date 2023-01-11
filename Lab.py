@@ -62,38 +62,32 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
     if pi>pia and pj==pja:
 
         if abajo=='@':
-            print('listo')
             print(pi+1,pj)
             return 0
 
         if izq=='@':
-            print('listo')
             print(pi,pj-1)
             return 0
 
         if der=='@':
-            print('listo')
             print(pi,pj+1)
             return 0
             
         if izq=='#' and der=='#' and (abajo!='#'):
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if izq=='#' and ((der!='#')) and abajo=='#':
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if ((izq!='#')) and (der=='#') and abajo=='#':
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -110,10 +104,10 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
             
+
         if izq=='#' and (der!='#') and (abajo!='#'):
             ai=xi
             aj=xj
@@ -127,7 +121,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -144,7 +137,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi+1
             dj=pj
-            l[pi][pj]='o'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -161,7 +153,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi+1
             dj=pj
-            l[pi][pj]='o'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -183,38 +174,32 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
     if pi<pia and pj==pja:
 
         if arriba=='@':
-            print('listo')
             print(pi-1,pj)
             return 0
 
         if izq=='@':
-            print('listo')
             print(pi,pj-1)
             return 0
 
         if der=='@':
-            print('listo')
             print(pi,pj+1)
             return 0
         
         if izq=='#' and der=='#' and (arriba!='#'):
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if izq=='#' and ((der!='#')) and arriba=='#':
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if ((izq!='#')) and (der=='#') and arriba=='#':
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -231,7 +216,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -248,7 +232,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -265,7 +248,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj-1
-            l[pi][pj]='o'
             lab(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
         
@@ -282,7 +264,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj-1
-            l[pi][pj]='o'
             lab(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -304,38 +285,32 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
     if pi==pia and pj>pja:
 
         if abajo=='@':
-            print('listo')
             print(pi+1,pj)
             return 0
 
         if arriba=='@':
-            print('listo')
             print(pi-1,pj)
             return 0
 
         if der=='@':
-            print('listo')
             print(pi,pj+1)
             return 0
 
         if der=='#' and abajo=='#' and (arriba!='#'):
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if der=='#' and ((abajo!='#')) and arriba=='#':
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if ((der!='#')) and (abajo=='#') and arriba=='#':
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -352,7 +327,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi+1
             dj=pj
-            l[pi][pj]='o'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -369,7 +343,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -386,7 +359,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
         
@@ -403,13 +375,10 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0   
 
         if ((der=='#')) and (abajo=='#') and arriba=='#':
-            print('Está cerrado')
-            print('Regresamos')
             pia=yi
             pja=yj
             pi=xi
@@ -427,38 +396,32 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
     if pi==pia and pj<pja:
 
         if abajo=='@':
-            print('listo')
             print(pi+1,pj)
             return 0
 
         if arriba=='@':
-            print('listo')
             print(pi-1,pj)
             return 0
 
         if izq=='@':
-            print('listo')
             print(pi,pj-1)
             return 0
 
         if izq=='#' and abajo=='#' and (arriba!='#'):
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if izq=='#' and ((abajo!='#')) and arriba=='#':
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if ((izq!='#')) and (abajo=='#') and arriba=='#':
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
         
@@ -475,7 +438,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi+1
             dj=pj
-            l[pi][pj]='o'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -492,7 +454,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj-1
-            l[pi][pj]='o'
             lab(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -509,7 +470,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi+1
             dj=pj
-            l[pi][pj]='o'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -526,7 +486,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi+1
             dj=pj
-            l[pi][pj]='o'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -543,11 +502,9 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             lab(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
-
     return 0
 
 lab (pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
-
 
 
 
