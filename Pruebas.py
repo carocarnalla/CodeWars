@@ -8,6 +8,13 @@ while myline:
     myline = myfile.readline()
 myfile.close() 
 
+# for i in l:
+#     for j in i:
+#         print(j, end=" ")
+#     print()
+
+
+lrep=l
 # Busca la entrada y guarda sus coordenadas
 
 for i in range(0,len(l)):
@@ -22,13 +29,11 @@ for i in range(0,len(l)):
             continue
 pia = Ei
 pja = Ej
-
 pi = Ei + 1
 pj = Ej
 
 entradai=Ei
 entradaj=Ej
-
 inicioi=Ei+1
 inicioj=Ej
 
@@ -49,43 +54,79 @@ aj = inicioj
 bi = entradai
 bj = entradaj
 
+# Para borrar los puntos
+
+def borrar(pi,pj):
+    print(pi,pj)
+    arriba = l[pi-1][pj]
+    abajo = l[pi+1][pj]
+    izq = l[pi][pj-1]
+    der = l[pi][pj+1]
+    if der=='.' and izq=='#' and arriba=='#' and abajo=='#':
+        print('1')
+        borrar(pi,pj+1)
+
+    if der=='#' and izq=='.' and arriba=='#' and abajo=='#':
+        print('2')
+        borrar(pi,pj-1)
+
+    if der=='#' and izq=='#' and arriba=='.' and abajo=='#':
+        print('3')
+        borrar(pi-1,pj)
+
+    if der=='#' and izq=='#' and arriba=='#' and abajo=='.':
+        print('4')
+        borrar(pi+1,pj)
+    
+    if der!='.' and izq!='.' and arriba!='.' and abajo!='.':
+        print('p')
+    
+    print('ninguna condicional')
+
+
 #Laberinto
+## Todas las bifurcaciones
+# Derecha - Abajo - Izquierda
 
 def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
     arriba = l[pi-1][pj]
     abajo = l[pi+1][pj]
     izq = l[pi][pj-1]
     der = l[pi][pj+1]
+
     
     if pi>pia and pj==pja:
 
         if abajo=='@':
-            print(pi+1,pj)
+            l[pi][pj]='.'
             return 0
 
         if izq=='@':
-            print(pi,pj-1)
+            l[pi][pj]='.'
             return 0
 
         if der=='@':
-            print(pi,pj+1)
+            l[pi][pj]='.'
             return 0
             
         if izq=='#' and der=='#' and (abajo!='#'):
             pia=pi
             pja=pj
+            l[pi][pj]='.'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if izq=='#' and ((der!='#')) and abajo=='#':
             pia=pi
             pja=pj
+            l[pi][pj]='.'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
-        if ((izq!='#')) and der=='#' and abajo=='#':
+        if ((izq!='#')) and (der=='#') and abajo=='#':
             pia=pi
             pja=pj
+            l[pi][pj]='.'
             lab(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -102,10 +143,10 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
+            l[pi][pj]='.'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
             
-
         if izq=='#' and (der!='#') and (abajo!='#'):
             ai=xi
             aj=xj
@@ -119,6 +160,7 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
+            l[pi][pj]='.'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -135,6 +177,7 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi+1
             dj=pj
+            l[pi][pj]='.'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -151,53 +194,59 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi+1
             dj=pj
+            l[pi][pj]='.'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if ((izq=='#')) and (der=='#') and abajo=='#':
-                pia=yi
-                pja=yj
-                pi=xi
-                pj=xj
-                xi=ai
-                xj=aj
-                yi=bi
-                yj=bj
-                l[di][dj]='#'
-                lab(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
-                return 0
+            # l[pi][pj]='.'
+            # borrar(pi,pj)
+            pia=yi
+            pja=yj
+            pi=xi
+            pj=xj
+            xi=ai
+            xj=aj
+            yi=bi
+            yj=bj
+            l[di][dj]='#'
+            lab(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
 
 
 
     if pi<pia and pj==pja:
 
         if arriba=='@':
-            print(pi-1,pj)
+            l[pi][pj]='.'
             return 0
 
         if izq=='@':
-            print(pi,pj-1)
+            l[pi][pj]='.'
             return 0
 
         if der=='@':
-            print(pi,pj+1)
+            l[pi][pj]='.'
             return 0
         
         if izq=='#' and der=='#' and (arriba!='#'):
             pia=pi
             pja=pj
+            l[pi][pj]='.'
             lab(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if izq=='#' and ((der!='#')) and arriba=='#':
             pia=pi
             pja=pj
+            l[pi][pj]='.'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if ((izq!='#')) and (der=='#') and arriba=='#':
             pia=pi
             pja=pj
+            l[pi][pj]='.'
             lab(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -214,6 +263,7 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
+            l[pi][pj]='.'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -230,6 +280,7 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
+            l[pi][pj]='.'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -246,6 +297,7 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj-1
+            l[pi][pj]='.'
             lab(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
         
@@ -262,10 +314,13 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj-1
+            l[pi][pj]='.'
             lab(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if ((izq=='#')) and (der=='#') and arriba=='#':
+            # l[pi][pj]='.'
+            # borrar(pi,pj)
             pia=yi
             pja=yj
             pi=xi
@@ -283,32 +338,35 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
     if pi==pia and pj>pja:
 
         if abajo=='@':
-            print(pi+1,pj)
+            l[pi][pj]='.'
             return 0
 
         if arriba=='@':
-            print(pi-1,pj)
+            l[pi][pj]='.'
             return 0
 
         if der=='@':
-            print(pi,pj+1)
+            l[pi][pj]='.'
             return 0
 
         if der=='#' and abajo=='#' and (arriba!='#'):
             pia=pi
             pja=pj
+            l[pi][pj]='.'
             lab(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if der=='#' and ((abajo!='#')) and arriba=='#':
             pia=pi
             pja=pj
+            l[pi][pj]='.'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if ((der!='#')) and (abajo=='#') and arriba=='#':
             pia=pi
             pja=pj
+            l[pi][pj]='.'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -325,6 +383,7 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi+1
             dj=pj
+            l[pi][pj]='.'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -341,6 +400,7 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
+            l[pi][pj]='.'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -357,6 +417,7 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
+            l[pi][pj]='.'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
         
@@ -373,10 +434,13 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
+            l[pi][pj]='.'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0   
 
         if ((der=='#')) and (abajo=='#') and arriba=='#':
+            # l[pi][pj]='.'
+            # borrar(pi,pj)
             pia=yi
             pja=yj
             pi=xi
@@ -394,32 +458,35 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
     if pi==pia and pj<pja:
 
         if abajo=='@':
-            print(pi+1,pj)
+            l[pi][pj]='.'
             return 0
 
         if arriba=='@':
-            print(pi-1,pj)
+            l[pi][pj]='.'
             return 0
 
         if izq=='@':
-            print(pi,pj-1)
+            l[pi][pj]='.'
             return 0
 
         if izq=='#' and abajo=='#' and (arriba!='#'):
             pia=pi
             pja=pj
+            l[pi][pj]='.'
             lab(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if izq=='#' and ((abajo!='#')) and arriba=='#':
             pia=pi
             pja=pj
+            l[pi][pj]='.'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if ((izq!='#')) and (abajo=='#') and arriba=='#':
             pia=pi
             pja=pj
+            l[pi][pj]='.'
             lab(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
         
@@ -436,6 +503,7 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi+1
             dj=pj
+            l[pi][pj]='.'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -452,6 +520,7 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj-1
+            l[pi][pj]='.'
             lab(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -468,6 +537,7 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi+1
             dj=pj
+            l[pi][pj]='.'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -484,10 +554,13 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi+1
             dj=pj
+            l[pi][pj]='.'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if ((izq=='#')) and (abajo=='#') and arriba=='#':
+            l[pi][pj]='.'
+            borrar(pi,pj)
             pia=yi
             pja=yj
             pi=xi
@@ -500,14 +573,47 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             lab(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
+
     return 0
 
 lab (pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
 
 
-m=l
 
-for i in m:
+def borrar(pi,pj):
+    arriba = l[pi-1][pj]
+    abajo = l[pi+1][pj]
+    izq = l[pi][pj-1]
+    der = l[pi][pj+1]
+    if der=='.' and izq=='#' and arriba=='#' and abajo=='#':
+            l[pi][pj]=' '
+            borrar(pi,pj+1)
+            return 0
+
+    if der=='#' and izq=='.' and arriba=='#' and abajo=='#':
+            l[pi][pj]=' '
+            borrar(pi,pj-1)
+            return 0
+
+    if der=='#' and izq=='#' and arriba=='.' and abajo=='#':
+            l[pi][pj]=' '
+            borrar(pi-1,pj)
+            return 0
+
+    if der=='#' and izq=='#' and arriba=='#' and abajo=='.':
+            l[pi][pj]=' '
+            borrar(pi+1,pj)
+            return 0
+    
+    if der!='.' and izq!='.' and arriba!='.' and abajo!='.':
+            l[pi][pj]=' '
+            return 0
+    
+    return 0
+
+
+
+for i in l:
     for j in i:
         print(j, end=" ")
     print()

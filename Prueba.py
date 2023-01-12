@@ -8,6 +8,13 @@ while myline:
     myline = myfile.readline()
 myfile.close() 
 
+# for i in l:
+#     for j in i:
+#         print(j, end=" ")
+#     print()
+
+
+lrep=l
 # Busca la entrada y guarda sus coordenadas
 
 for i in range(0,len(l)):
@@ -35,7 +42,6 @@ inicioj=Ej
 di=0
 dj=0
 
-
 # Coordenadas de bifurcación
 
 xi = inicioi
@@ -52,6 +58,7 @@ bj = entradaj
 
 #Laberinto
 ## Todas las bifurcaciones
+# Derecha - Abajo - Izquierda
 
 def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
     arriba = l[pi-1][pj]
@@ -62,38 +69,29 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
     if pi>pia and pj==pja:
 
         if abajo=='@':
-            print('listo')
-            print(pi+1,pj)
             return 0
 
         if izq=='@':
-            print('listo')
-            print(pi,pj-1)
             return 0
 
         if der=='@':
-            print('listo')
-            print(pi,pj+1)
             return 0
             
         if izq=='#' and der=='#' and (abajo!='#'):
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if izq=='#' and ((der!='#')) and abajo=='#':
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if ((izq!='#')) and (der=='#') and abajo=='#':
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -110,7 +108,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
             
@@ -127,7 +124,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -144,7 +140,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi+1
             dj=pj
-            l[pi][pj]='o'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -161,60 +156,50 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi+1
             dj=pj
-            l[pi][pj]='o'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if ((izq=='#')) and (der=='#') and abajo=='#':
-                pia=yi
-                pja=yj
-                pi=xi
-                pj=xj
-                xi=ai
-                xj=aj
-                yi=bi
-                yj=bj
-                l[di][dj]='#'
-                lab(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
-                return 0
+            pia=yi
+            pja=yj
+            pi=xi
+            pj=xj
+            xi=ai
+            xj=aj
+            yi=bi
+            yj=bj
+            l[di][dj]='#'
+            lab(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
 
 
 
     if pi<pia and pj==pja:
 
         if arriba=='@':
-            print('listo')
-            print(pi-1,pj)
             return 0
 
         if izq=='@':
-            print('listo')
-            print(pi,pj-1)
             return 0
 
         if der=='@':
-            print('listo')
-            print(pi,pj+1)
             return 0
         
         if izq=='#' and der=='#' and (arriba!='#'):
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if izq=='#' and ((der!='#')) and arriba=='#':
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if ((izq!='#')) and (der=='#') and arriba=='#':
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -231,7 +216,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -248,7 +232,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -265,7 +248,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj-1
-            l[pi][pj]='o'
             lab(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
         
@@ -282,7 +264,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj-1
-            l[pi][pj]='o'
             lab(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -304,38 +285,29 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
     if pi==pia and pj>pja:
 
         if abajo=='@':
-            print('listo')
-            print(pi+1,pj)
             return 0
 
         if arriba=='@':
-            print('listo')
-            print(pi-1,pj)
             return 0
 
         if der=='@':
-            print('listo')
-            print(pi,pj+1)
             return 0
 
         if der=='#' and abajo=='#' and (arriba!='#'):
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if der=='#' and ((abajo!='#')) and arriba=='#':
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if ((der!='#')) and (abajo=='#') and arriba=='#':
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -352,7 +324,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi+1
             dj=pj
-            l[pi][pj]='o'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -369,7 +340,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -386,7 +356,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
         
@@ -403,13 +372,10 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj+1
-            l[pi][pj]='o'
             lab(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0   
 
         if ((der=='#')) and (abajo=='#') and arriba=='#':
-            print('Está cerrado')
-            print('Regresamos')
             pia=yi
             pja=yj
             pi=xi
@@ -427,38 +393,29 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
     if pi==pia and pj<pja:
 
         if abajo=='@':
-            print('listo')
-            print(pi+1,pj)
             return 0
 
         if arriba=='@':
-            print('listo')
-            print(pi-1,pj)
             return 0
 
         if izq=='@':
-            print('listo')
-            print(pi,pj-1)
             return 0
 
         if izq=='#' and abajo=='#' and (arriba!='#'):
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if izq=='#' and ((abajo!='#')) and arriba=='#':
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if ((izq!='#')) and (abajo=='#') and arriba=='#':
             pia=pi
             pja=pj
-            l[pi][pj]='o'
             lab(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
         
@@ -475,7 +432,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi+1
             dj=pj
-            l[pi][pj]='o'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -492,7 +448,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi
             dj=pj-1
-            l[pi][pj]='o'
             lab(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -509,7 +464,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi+1
             dj=pj
-            l[pi][pj]='o'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -526,7 +480,6 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             pja=pj
             di=pi+1
             dj=pj
-            l[pi][pj]='o'
             lab(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
@@ -548,10 +501,1455 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
 
 lab (pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
 
+#Puntitos
+l1=l
 
+def labpunto (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
+    arriba = l1[pi-1][pj]
+    abajo = l1[pi+1][pj]
+    izq = l1[pi][pj-1]
+    der = l1[pi][pj+1]
+    
+    if pi>pia and pj==pja:
+
+        if abajo=='@':
+            l1[pi][pj]='.'
+            return 0
+
+        if izq=='@':
+            l1[pi][pj]='.'
+            return 0
+
+        if der=='@':
+            l1[pi][pj]='.'
+            return 0
+            
+        if izq=='#' and der=='#' and (abajo!='#'):
+            pia=pi
+            pja=pj
+            l1[pi][pj]='.'
+            labpunto(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if izq=='#' and ((der!='#')) and abajo=='#':
+            pia=pi
+            pja=pj
+            l1[pi][pj]='.'
+            labpunto(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq!='#')) and (der=='#') and abajo=='#':
+            pia=pi
+            pja=pj
+            l1[pi][pj]='.'
+            labpunto(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq!='#')) and (der!='#') and abajo=='#':
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi-1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj+1
+            l1[pi][pj]='.'
+            labpunto(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+            
+        if izq=='#' and (der!='#') and (abajo!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi-1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj+1
+            l1[pi][pj]='.'
+            labpunto(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (izq!='#') and der=='#' and (abajo!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi-1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi+1
+            dj=pj
+            l1[pi][pj]='.'
+            labpunto(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (izq!='#') and (der!='#') and (abajo!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi-1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi+1
+            dj=pj
+            l1[pi][pj]='.'
+            labpunto(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq=='#')) and (der=='#') and abajo=='#':
+            pia=yi
+            pja=yj
+            pi=xi
+            pj=xj
+            xi=ai
+            xj=aj
+            yi=bi
+            yj=bj
+            l1[di][dj]='#'
+            labpunto(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+
+
+    if pi<pia and pj==pja:
+
+        if arriba=='@':
+            l1[pi][pj]='.'
+            return 0
+
+        if izq=='@':
+            l1[pi][pj]='.'
+            return 0
+
+        if der=='@':
+            l1[pi][pj]='.'
+            return 0
+        
+        if izq=='#' and der=='#' and (arriba!='#'):
+            pia=pi
+            pja=pj
+            l1[pi][pj]='.'
+            labpunto(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if izq=='#' and ((der!='#')) and arriba=='#':
+            pia=pi
+            pja=pj
+            l1[pi][pj]='.'
+            labpunto(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq!='#')) and (der=='#') and arriba=='#':
+            pia=pi
+            pja=pj
+            l1[pi][pj]='.'
+            labpunto(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq!='#')) and (der!='#') and arriba=='#':
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi+1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj+1
+            l1[pi][pj]='.'
+            labpunto(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if izq=='#' and (der!='#') and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi+1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj+1
+            l1[pi][pj]='.'
+            labpunto(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (izq!='#') and der=='#' and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi+1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj-1
+            l1[pi][pj]='.'
+            labpunto(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+        
+        if (izq!='#') and (der!='#') and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi+1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj-1
+            l1[pi][pj]='.'
+            labpunto(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq=='#')) and (der=='#') and arriba=='#':
+            pia=yi
+            pja=yj
+            pi=xi
+            pj=xj
+            xi=ai
+            xj=aj
+            yi=bi
+            yj=bj
+            l1[di][dj]='#'
+            labpunto(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+
+
+    if pi==pia and pj>pja:
+
+        if abajo=='@':
+            l1[pi][pj]='.'
+            return 0
+
+        if arriba=='@':
+            l1[pi][pj]='.'
+            return 0
+
+        if der=='@':
+            l1[pi][pj]='.'
+            return 0
+
+        if der=='#' and abajo=='#' and (arriba!='#'):
+            pia=pi
+            pja=pj
+            l1[pi][pj]='.'
+            labpunto(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if der=='#' and ((abajo!='#')) and arriba=='#':
+            pia=pi
+            pja=pj
+            l1[pi][pj]='.'
+            labpunto(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((der!='#')) and (abajo=='#') and arriba=='#':
+            pia=pi
+            pja=pj
+            l1[pi][pj]='.'
+            labpunto(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if der=='#' and ((abajo!='#')) and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj-1
+            pia=pi
+            pja=pj
+            di=pi+1
+            dj=pj
+            l1[pi][pj]='.'
+            labpunto(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (der!='#') and (abajo!='#') and arriba=='#':
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj-1
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj+1
+            l1[pi][pj]='.'
+            labpunto(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (der!='#') and abajo=='#' and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj-1
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj+1
+            l1[pi][pj]='.'
+            labpunto(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+        
+        if (der!='#') and (abajo!='#') and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj-1
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj+1
+            l1[pi][pj]='.'
+            labpunto(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0   
+
+        if ((der=='#')) and (abajo=='#') and arriba=='#':
+            pia=yi
+            pja=yj
+            pi=xi
+            pj=xj
+            xi=ai
+            xj=aj
+            yi=bi
+            yj=bj
+            l1[di][dj]='#'
+            labpunto(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+        
+
+
+    if pi==pia and pj<pja:
+
+        if abajo=='@':
+            l1[pi][pj]='.'
+            return 0
+
+        if arriba=='@':
+            l1[pi][pj]='.'
+            return 0
+
+        if izq=='@':
+            l1[pi][pj]='.'
+            return 0
+
+        if izq=='#' and abajo=='#' and (arriba!='#'):
+            pia=pi
+            pja=pj
+            l1[pi][pj]='.'
+            labpunto(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if izq=='#' and ((abajo!='#')) and arriba=='#':
+            pia=pi
+            pja=pj
+            l1[pi][pj]='.'
+            labpunto(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq!='#')) and (abajo=='#') and arriba=='#':
+            pia=pi
+            pja=pj
+            l1[pi][pj]='.'
+            labpunto(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+        
+        if izq=='#' and ((abajo!='#')) and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj+1
+            pia=pi
+            pja=pj
+            di=pi+1
+            dj=pj
+            l1[pi][pj]='.'
+            labpunto(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (izq!='#') and abajo=='#' and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj+1
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj-1
+            l1[pi][pj]='.'
+            labpunto(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (izq!='#') and (abajo!='#') and arriba=='#':
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj+1
+            pia=pi
+            pja=pj
+            di=pi+1
+            dj=pj
+            l1[pi][pj]='.'
+            labpunto(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (izq!='#') and (abajo!='#') and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj+1
+            pia=pi
+            pja=pj
+            di=pi+1
+            dj=pj
+            l1[pi][pj]='.'
+            labpunto(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq=='#')) and (abajo=='#') and arriba=='#':
+            pia=yi
+            pja=yj
+            pi=xi
+            pj=xj
+            xi=ai
+            xj=aj
+            yi=bi
+            yj=bj
+            l1[di][dj]='#'
+            labpunto(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+
+    return 0
+
+#labpunto (pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+
+# for i in l:
+#     for j in i:
+#         print(j, end=" ")
+#     print()
+
+
+
+
+# Segundo
+
+def lab2 (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
+    arriba = l[pi-1][pj]
+    abajo = l[pi+1][pj]
+    izq = l[pi][pj-1]
+    der = l[pi][pj+1]
+    
+    if pi>pia and pj==pja:
+
+        if abajo=='@':
+            return 0
+
+        if izq=='@':
+            return 0
+
+        if der=='@':
+            return 0
+            
+        if izq!=' ' and der!=' ' and (abajo==' '):
+            pia=pi
+            pja=pj
+            lab2(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if izq!=' ' and ((der==' ')) and abajo!=' ':
+            pia=pi
+            pja=pj
+            lab2(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq==' ')) and der!=' ' and abajo!=' ':
+            pia=pi
+            pja=pj
+            lab2(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq==' ')) and (der==' ') and abajo!=' ':
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi-1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj-1
+            lab2(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+            
+        if izq!=' ' and (der==' ') and (abajo==' '):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi-1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi+1
+            dj=pj
+            lab2(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (izq==' ') and der!=' ' and (abajo==' '):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi-1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi+1
+            dj=pj
+            lab2(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (izq==' ') and (der==' ') and (abajo==' '):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi-1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi+1
+            dj=pj
+            lab2(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq!=' ')) and (der!=' ') and abajo!=' ':
+                pia=yi
+                pja=yj
+                pi=xi
+                pj=xj
+                xi=ai
+                xj=aj
+                yi=bi
+                yj=bj
+                l[di][dj]='#'
+                lab2(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+                return 0
+
+
+
+    if pi<pia and pj==pja:
+
+        if arriba=='@':
+            return 0
+
+        if izq=='@':
+            return 0
+
+        if der=='@':
+            return 0
+        
+        if izq=='#' and der=='#' and (arriba!='#'):
+            pia=pi
+            pja=pj
+            lab2(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if izq=='#' and ((der!='#')) and arriba=='#':
+            pia=pi
+            pja=pj
+            lab2(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq!='#')) and (der=='#') and arriba=='#':
+            pia=pi
+            pja=pj
+            lab2(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq!='#')) and (der!='#') and arriba=='#':
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi+1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj-1
+            lab2(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if izq=='#' and (der!='#') and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi+1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi-1
+            dj=pj
+            lab2(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (izq!='#') and der=='#' and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi+1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj-1
+            lab2(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+        
+        if (izq!='#') and (der!='#') and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi+1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj-1
+            lab2(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq=='#')) and (der=='#') and arriba=='#':
+            pia=yi
+            pja=yj
+            pi=xi
+            pj=xj
+            xi=ai
+            xj=aj
+            yi=bi
+            yj=bj
+            l[di][dj]='#'
+            l[pi][pj]='.'
+            lab2(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+
+
+    if pi==pia and pj>pja:
+
+        if abajo=='@':
+            return 0
+
+        if arriba=='@':
+            return 0
+
+        if der=='@':
+            return 0
+
+        if abajo=='.':
+            return 0
+
+        if arriba=='.':
+            return 0
+
+        if der=='.':
+            return 0
+
+        if der=='#' and abajo=='#' and (arriba!='#'):
+            pia=pi
+            pja=pj
+            lab2(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if der=='#' and ((abajo!='#')) and arriba=='#':
+            pia=pi
+            pja=pj
+            lab2(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((der!='#')) and abajo=='#' and arriba=='#':
+            pia=pi
+            pja=pj
+            lab2(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if der=='#' and ((abajo!='#')) and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj-1
+            pia=pi
+            pja=pj
+            di=pi-1
+            dj=pj
+            lab2(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (der!='#') and (abajo!='#') and arriba=='#':
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj-1
+            pia=pi
+            pja=pj
+            di=pi+1
+            dj=pj
+            lab2(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (der!='#') and abajo=='#' and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj-1
+            pia=pi
+            pja=pj
+            di=pi-1
+            dj=pj
+            lab2(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+        
+        if (der!='#') and (abajo!='#') and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj-1
+            pia=pi
+            pja=pj
+            di=pi-1
+            dj=pj
+            lab2(pi-1,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0   
+
+        if ((der=='#')) and (abajo=='#') and arriba=='#':
+            pia=yi
+            pja=yj
+            pi=xi
+            pj=xj
+            xi=ai
+            xj=aj
+            yi=bi
+            yj=bj
+            l[di][dj]='#'
+            lab2(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+        
+
+
+    if pi==pia and pj<pja:
+
+        if abajo=='@':
+            return 0
+
+        if arriba=='@':
+            return 0
+
+        if izq=='@':
+            return 0
+
+        if izq=='#' and abajo=='#' and (arriba!='#'):
+            pia=pi
+            pja=pj
+            lab2(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if izq=='#' and ((abajo!='#')) and arriba=='#':
+            pia=pi
+            pja=pj
+            lab2(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq!='#')) and abajo=='#' and arriba=='#':
+            pia=pi
+            pja=pj
+            lab2(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+        
+        if izq=='#' and ((abajo!='#')) and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj+1
+            pia=pi
+            pja=pj
+            di=pi+1
+            dj=pj
+            lab2(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (izq!='#') and abajo=='#' and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj+1
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj-1
+            lab2(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (izq!='#') and (abajo!='#') and arriba=='#':
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj+1
+            pia=pi
+            pja=pj
+            di=pi+1
+            dj=pj
+            lab2(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (izq!='#') and (abajo!='#') and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj+1
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj-1
+            lab2(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq=='#')) and (abajo=='#') and arriba=='#':
+            pia=yi
+            pja=yj
+            pi=xi
+            pj=xj
+            xi=ai
+            xj=aj
+            yi=bi
+            yj=bj
+            l[di][dj]='#'
+            lab2(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+
+    return 0
+
+lab2 (pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
 
 
 for i in l:
     for j in i:
         print(j, end=" ")
     print()
+
+
+# l2=l
+# # # # Segundo Puntitos
+# def lab2p (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
+#     arriba = l2[pi-1][pj]
+#     abajo = l2[pi+1][pj]
+#     izq = l2[pi][pj-1]
+#     der = l2[pi][pj+1]
+    
+#     if pi>pia and pj==pja:
+
+#         if abajo=='@':
+#             l2[pi][pj]='.'
+#             return 0
+
+#         if izq=='@':
+#             l2[pi][pj]='.'
+#             return 0
+
+#         if der=='@':
+#             l2[pi][pj]='.'
+#             return 0
+            
+#         if izq=='#' and der=='#' and (abajo!='#'):
+#             pia=pi
+#             pja=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if izq=='#' and ((der!='#')) and abajo=='#':
+#             pia=pi
+#             pja=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if ((izq!='#')) and (der=='#') and abajo=='#':
+#             pia=pi
+#             pja=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if ((izq!='#')) and (der!='#') and abajo=='#':
+#             ai=xi
+#             aj=xj
+#             bi=yi
+#             bj=yj
+#             xi=pi
+#             xj=pj
+#             yi=pi-1
+#             yj=pj
+#             pia=pi
+#             pja=pj
+#             di=pi
+#             dj=pj-1
+#             l2[pi][pj]='.'
+#             lab2p(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+            
+#         if izq=='#' and (der!='#') and (abajo!='#'):
+#             ai=xi
+#             aj=xj
+#             bi=yi
+#             bj=yj
+#             xi=pi
+#             xj=pj
+#             yi=pi-1
+#             yj=pj
+#             pia=pi
+#             pja=pj
+#             di=pi+1
+#             dj=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if (izq!='#') and der=='#' and (abajo!='#'):
+#             ai=xi
+#             aj=xj
+#             bi=yi
+#             bj=yj
+#             xi=pi
+#             xj=pj
+#             yi=pi-1
+#             yj=pj
+#             pia=pi
+#             pja=pj
+#             di=pi+1
+#             dj=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if (izq!='#') and (der!='#') and (abajo!='#'):
+#             ai=xi
+#             aj=xj
+#             bi=yi
+#             bj=yj
+#             xi=pi
+#             xj=pj
+#             yi=pi-1
+#             yj=pj
+#             pia=pi
+#             pja=pj
+#             di=pi+1
+#             dj=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if ((izq=='#')) and (der=='#') and abajo=='#':
+#                 pia=yi
+#                 pja=yj
+#                 pi=xi
+#                 pj=xj
+#                 xi=ai
+#                 xj=aj
+#                 yi=bi
+#                 yj=bj
+#                 l2[di][dj]='#'
+#                 lab2p(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#                 return 0
+
+
+
+#     if pi<pia and pj==pja:
+
+#         if arriba=='@':
+#             l2[pi][pj]='.'
+#             return 0
+
+#         if izq=='@':
+#             l2[pi][pj]='.'
+#             return 0
+
+#         if der=='@':
+#             l2[pi][pj]='.'
+#             return 0
+        
+#         if izq=='#' and der=='#' and (arriba!='#'):
+#             pia=pi
+#             pja=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if izq=='#' and ((der!='#')) and arriba=='#':
+#             pia=pi
+#             pja=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if ((izq!='#')) and (der=='#') and arriba=='#':
+#             pia=pi
+#             pja=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if ((izq!='#')) and (der!='#') and arriba=='#':
+#             ai=xi
+#             aj=xj
+#             bi=yi
+#             bj=yj
+#             xi=pi
+#             xj=pj
+#             yi=pi+1
+#             yj=pj
+#             pia=pi
+#             pja=pj
+#             di=pi
+#             dj=pj-1
+#             l2[pi][pj]='.'
+#             lab2p(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if izq=='#' and (der!='#') and (arriba!='#'):
+#             ai=xi
+#             aj=xj
+#             bi=yi
+#             bj=yj
+#             xi=pi
+#             xj=pj
+#             yi=pi+1
+#             yj=pj
+#             pia=pi
+#             pja=pj
+#             di=pi-1
+#             dj=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if (izq!='#') and der=='#' and (arriba!='#'):
+#             ai=xi
+#             aj=xj
+#             bi=yi
+#             bj=yj
+#             xi=pi
+#             xj=pj
+#             yi=pi+1
+#             yj=pj
+#             pia=pi
+#             pja=pj
+#             di=pi
+#             dj=pj-1
+#             l2[pi][pj]='.'
+#             lab2p(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+        
+#         if (izq!='#') and (der!='#') and (arriba!='#'):
+#             ai=xi
+#             aj=xj
+#             bi=yi
+#             bj=yj
+#             xi=pi
+#             xj=pj
+#             yi=pi+1
+#             yj=pj
+#             pia=pi
+#             pja=pj
+#             di=pi
+#             dj=pj-1
+#             l2[pi][pj]='.'
+#             lab2p(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if ((izq=='#')) and (der=='#') and arriba=='#':
+#             pia=yi
+#             pja=yj
+#             pi=xi
+#             pj=xj
+#             xi=ai
+#             xj=aj
+#             yi=bi
+#             yj=bj
+#             l2[di][dj]='#'
+#             lab2p(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+
+
+#     if pi==pia and pj>pja:
+
+#         if abajo=='@':
+#             l2[pi][pj]='.'
+#             return 0
+
+#         if arriba=='@':
+#             l2[pi][pj]='.'
+#             return 0
+
+#         if der=='@':
+#             l2[pi][pj]='.'
+#             return 0
+
+#         if der=='#' and abajo=='#' and (arriba!='#'):
+#             pia=pi
+#             pja=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if der=='#' and ((abajo!='#')) and arriba=='#':
+#             pia=pi
+#             pja=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if ((der!='#')) and abajo=='#' and arriba=='#':
+#             pia=pi
+#             pja=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if der=='#' and ((abajo!='#')) and (arriba!='#'):
+#             ai=xi
+#             aj=xj
+#             bi=yi
+#             bj=yj
+#             xi=pi
+#             xj=pj
+#             yi=pi
+#             yj=pj-1
+#             pia=pi
+#             pja=pj
+#             di=pi-1
+#             dj=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if (der!='#') and (abajo!='#') and arriba=='#':
+#             ai=xi
+#             aj=xj
+#             bi=yi
+#             bj=yj
+#             xi=pi
+#             xj=pj
+#             yi=pi
+#             yj=pj-1
+#             pia=pi
+#             pja=pj
+#             di=pi+1
+#             dj=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if (der!='#') and abajo=='#' and (arriba!='#'):
+#             ai=xi
+#             aj=xj
+#             bi=yi
+#             bj=yj
+#             xi=pi
+#             xj=pj
+#             yi=pi
+#             yj=pj-1
+#             pia=pi
+#             pja=pj
+#             di=pi-1
+#             dj=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+        
+#         if (der!='#') and (abajo!='#') and (arriba!='#'):
+#             ai=xi
+#             aj=xj
+#             bi=yi
+#             bj=yj
+#             xi=pi
+#             xj=pj
+#             yi=pi
+#             yj=pj-1
+#             pia=pi
+#             pja=pj
+#             di=pi-1
+#             dj=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi-1,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0   
+
+#         if ((der=='#')) and (abajo=='#') and arriba=='#':
+#             pia=yi
+#             pja=yj
+#             pi=xi
+#             pj=xj
+#             xi=ai
+#             xj=aj
+#             yi=bi
+#             yj=bj
+#             l2[di][dj]='#'
+#             lab2p(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+        
+
+
+#     if pi==pia and pj<pja:
+
+#         if abajo=='@':
+#             l2[pi][pj]='.'
+#             return 0
+
+#         if arriba=='@':
+#             l2[pi][pj]='.'
+#             return 0
+
+#         if izq=='@':
+#             l2[pi][pj]='.'
+#             return 0
+
+#         if izq=='#' and abajo=='#' and (arriba!='#'):
+#             pia=pi
+#             pja=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if izq=='#' and ((abajo!='#')) and arriba=='#':
+#             pia=pi
+#             pja=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if ((izq!='#')) and abajo=='#' and arriba=='#':
+#             pia=pi
+#             pja=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+        
+#         if izq=='#' and ((abajo!='#')) and (arriba!='#'):
+#             ai=xi
+#             aj=xj
+#             bi=yi
+#             bj=yj
+#             xi=pi
+#             xj=pj
+#             yi=pi
+#             yj=pj+1
+#             pia=pi
+#             pja=pj
+#             di=pi+1
+#             dj=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if (izq!='#') and abajo=='#' and (arriba!='#'):
+#             ai=xi
+#             aj=xj
+#             bi=yi
+#             bj=yj
+#             xi=pi
+#             xj=pj
+#             yi=pi
+#             yj=pj+1
+#             pia=pi
+#             pja=pj
+#             di=pi
+#             dj=pj-1
+#             l2[pi][pj]='.'
+#             lab2p(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if (izq!='#') and (abajo!='#') and arriba=='#':
+#             ai=xi
+#             aj=xj
+#             bi=yi
+#             bj=yj
+#             xi=pi
+#             xj=pj
+#             yi=pi
+#             yj=pj+1
+#             pia=pi
+#             pja=pj
+#             di=pi+1
+#             dj=pj
+#             l2[pi][pj]='.'
+#             lab2p(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if (izq!='#') and (abajo!='#') and (arriba!='#'):
+#             ai=xi
+#             aj=xj
+#             bi=yi
+#             bj=yj
+#             xi=pi
+#             xj=pj
+#             yi=pi
+#             yj=pj+1
+#             pia=pi
+#             pja=pj
+#             di=pi
+#             dj=pj-1
+#             l2[pi][pj]='.'
+#             lab2p(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+#         if ((izq=='#')) and (abajo=='#') and arriba=='#':
+#             pia=yi
+#             pja=yj
+#             pi=xi
+#             pj=xj
+#             xi=ai
+#             xj=aj
+#             yi=bi
+#             yj=bj
+#             l2[di][dj]='#'
+#             lab2p(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#             return 0
+
+
+#     return 0
+
+# lab2p (pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+
+# # for i in l1:
+# #     for j in i:
+# #         print(j, end=" ")
+# #     print()
+
+
+# for i in l2:
+#     for j in i:
+#         print(j, end=" ")
+#     print()
+
+
+
+# for i in l:
+#     for j in i:
+#         print(j, end=" ")
+#     print()
