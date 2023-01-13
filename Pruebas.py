@@ -8,11 +8,6 @@ while myline:
     myline = myfile.readline()
 myfile.close() 
 
-# for i in l:
-#     for j in i:
-#         print(j, end=" ")
-#     print()
-
 lrep=l
 # Busca la entrada y guarda sus coordenadas
 
@@ -90,8 +85,6 @@ def borrar(pi,pj):
 
 
 #Laberinto
-## Todas las bifurcaciones
-# Derecha - Abajo - Izquierda
 
 def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
     arriba = l[pi-1][pj]
@@ -580,7 +573,8 @@ def lab (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
 
     return 0
 
-# lab (pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#lab (pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#lab (pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
 
 # for i in l:
 #     for j in i:
@@ -677,10 +671,10 @@ def lab2 (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
             yj=pj
             pia=pi
             pja=pj
-            di=pi
-            dj=pj-1
+            di=pi+1
+            dj=pj
             l[pi][pj]='.'
-            lab2(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            lab2(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
             return 0
 
         if (izq!='#') and (der!='#') and (abajo!='#'):
@@ -1080,8 +1074,501 @@ def lab2 (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
     return 0
 
 
-lab2(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#lab2(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
 
+
+
+def lab3 (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj):
+    arriba = l[pi-1][pj]
+    abajo = l[pi+1][pj]
+    izq = l[pi][pj-1]
+    der = l[pi][pj+1]
+
+    if pi>pia and pj==pja:
+
+        if abajo=='@':
+            l[pi][pj]='.'
+            return 0
+
+        if izq=='@':
+            l[pi][pj]='.'
+            return 0
+
+        if der=='@':
+            l[pi][pj]='.'
+            return 0
+            
+        if izq=='#' and der=='#' and (abajo!='#'):
+            pia=pi
+            pja=pj
+            l[pi][pj]='.'
+            lab3(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if izq=='#' and ((der!='#')) and abajo=='#':
+            pia=pi
+            pja=pj
+            l[pi][pj]='.'
+            lab3(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq!='#')) and der=='#' and abajo=='#':
+            pia=pi
+            pja=pj
+            l[pi][pj]='.'
+            lab3(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq!='#')) and (der!='#') and abajo=='#':
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi-1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj-1
+            l[pi][pj]='.'
+            lab3(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+            
+        if izq=='#' and (der!='#') and (abajo!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi-1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi+1
+            dj=pj
+            l[pi][pj]='.'
+            lab3(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (izq!='#') and der=='#' and (abajo!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi-1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj-1
+            l[pi][pj]='.'
+            lab3(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (izq!='#') and (der!='#') and (abajo!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi-1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi+1
+            dj=pj
+            l[pi][pj]='.'
+            lab3(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq=='#')) and (der=='#') and abajo=='#':
+            l[pi][pj]='.'
+            l[di][dj]='#'
+            borrar(pi,pj)
+            pia=yi
+            pja=yj
+            pi=xi
+            pj=xj
+            xi=ai
+            xj=aj
+            yi=bi
+            yj=bj
+            lab3(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+
+
+    if pi<pia and pj==pja:
+
+        if arriba=='@':
+            l[pi][pj]='.'
+            return 0
+
+        if izq=='@':
+            l[pi][pj]='.'
+            return 0
+
+        if der=='@':
+            l[pi][pj]='.'
+            return 0
+        
+        if izq=='#' and der=='#' and (arriba!='#'):
+            pia=pi
+            pja=pj
+            l[pi][pj]='.'
+            lab3(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if izq=='#' and ((der!='#')) and arriba=='#':
+            pia=pi
+            pja=pj
+            l[pi][pj]='.'
+            lab3(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq!='#')) and der=='#' and arriba=='#':
+            pia=pi
+            pja=pj
+            l[pi][pj]='.'
+            lab3(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq!='#')) and (der!='#') and arriba=='#':
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi+1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj-1
+            l[pi][pj]='.'
+            lab3(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if izq=='#' and (der!='#') and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi+1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi-1
+            dj=pj
+            l[pi][pj]='.'
+            lab3(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (izq!='#') and der=='#' and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi+1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj-1
+            l[pi][pj]='.'
+            lab3(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+        
+        if (izq!='#') and (der!='#') and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi+1
+            yj=pj
+            pia=pi
+            pja=pj
+            di=pi-1
+            dj=pj
+            l[pi][pj]='.'
+            lab3(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq=='#')) and (der=='#') and arriba=='#':
+            l[pi][pj]='.'
+            l[di][dj]='#'
+            borrar(pi,pj)
+            pia=yi
+            pja=yj
+            pi=xi
+            pj=xj
+            xi=ai
+            xj=aj
+            yi=bi
+            yj=bj
+            lab3(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+
+
+    if pi==pia and pj>pja:
+
+        if abajo=='@':
+            l[pi][pj]='.'
+            return 0
+
+        if arriba=='@':
+            l[pi][pj]='.'
+            return 0
+
+        if der=='@':
+            l[pi][pj]='.'
+            return 0
+
+        if der=='#' and abajo=='#' and (arriba!='#'):
+            pia=pi
+            pja=pj
+            l[pi][pj]='.'
+            lab3(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if der=='#' and ((abajo!='#')) and arriba=='#':
+            pia=pi
+            pja=pj
+            l[pi][pj]='.'
+            lab3(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((der!='#')) and abajo=='#' and arriba=='#':
+            pia=pi
+            pja=pj
+            l[pi][pj]='.'
+            lab3(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if der=='#' and ((abajo!='#')) and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj-1
+            pia=pi
+            pja=pj
+            di=pi-1
+            dj=pj
+            l[pi][pj]='.'
+            print('Aquí')
+            lab3(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (der!='#') and (abajo!='#') and arriba=='#':
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj-1
+            pia=pi
+            pja=pj
+            di=pi+1
+            dj=pj
+            l[pi][pj]='.'
+            lab3(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (der!='#') and abajo=='#' and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj-1
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj+1
+            l[pi][pj]='.'
+            lab3(pi,pj+1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+        
+        if (der!='#') and (abajo!='#') and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj-1
+            pia=pi
+            pja=pj
+            di=pi-1
+            dj=pj
+            l[pi][pj]='.'
+            lab3(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0   
+
+        if ((der=='#')) and (abajo=='#') and arriba=='#':
+            l[pi][pj]='.'
+            l[di][dj]='#'
+            borrar(pi,pj)
+            pia=yi
+            pja=yj
+            pi=xi
+            pj=xj
+            xi=ai
+            xj=aj
+            yi=bi
+            yj=bj
+            lab3(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+        
+
+
+    if pi==pia and pj<pja:
+
+        if abajo=='@':
+            l[pi][pj]='.'
+            return 0
+
+        if arriba=='@':
+            l[pi][pj]='.'
+            return 0
+
+        if izq=='@':
+            l[pi][pj]='.'
+            return 0
+
+        if izq=='#' and abajo=='#' and (arriba!='#'):
+            pia=pi
+            pja=pj
+            l[pi][pj]='.'
+            lab3(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if izq=='#' and ((abajo!='#')) and arriba=='#':
+            pia=pi
+            pja=pj
+            l[pi][pj]='.'
+            lab3(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq!='#')) and abajo=='#' and arriba=='#':
+            pia=pi
+            pja=pj
+            l[pi][pj]='.'
+            lab3(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+        
+        if izq=='#' and ((abajo!='#')) and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj+1
+            pia=pi
+            pja=pj
+            di=pi+1
+            dj=pj
+            l[pi][pj]='.'
+            lab3(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (izq!='#') and abajo=='#' and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj+1
+            pia=pi
+            pja=pj
+            di=pi-1
+            dj=pj
+            l[pi][pj]='.'
+            lab3(pi-1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (izq!='#') and (abajo!='#') and arriba=='#':
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj+1
+            pia=pi
+            pja=pj
+            di=pi+1
+            dj=pj
+            l[pi][pj]='.'
+            lab3(pi+1,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if (izq!='#') and (abajo!='#') and (arriba!='#'):
+            ai=xi
+            aj=xj
+            bi=yi
+            bj=yj
+            xi=pi
+            xj=pj
+            yi=pi
+            yj=pj+1
+            pia=pi
+            pja=pj
+            di=pi
+            dj=pj-1
+            l[pi][pj]='.'
+            lab3(pi,pj-1,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+        if ((izq=='#')) and (abajo=='#') and arriba=='#':
+            l[pi][pj]='.'
+            l[di][dj]='#'
+            borrar(pi,pj)
+            pia=yi
+            pja=yj
+            pi=xi
+            pj=xj
+            xi=ai
+            xj=aj
+            yi=bi
+            yj=bj
+            lab3(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+            return 0
+
+
+    return 0
+
+#lab (pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+lab2(pi,pj,pia,pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
+#lab3 (pi, pj, pia, pja,xi,xj,yi,yj,ai,aj,bi,bj,di,dj)
 
 for i in l:
     for j in i:
